@@ -1,5 +1,5 @@
-from PIL import GimpGradientFile
 import tkinter as tk
+import pyautogui
 
 class AppInterface:
     def __init__(self): #criando a tela principal do projeto
@@ -29,13 +29,40 @@ class AppInterface:
         self.label_tecla_parar.pack(pady = 5)
         self.entrada_tecla_parar = tk.Entry(self.tela)
         self.entrada_tecla_parar.pack()
-    #criação dos botões
+        #criação dos botões
         #botão iniciar
-        self.btn_iniciar = tk.Button (self.tela, text = "Iniciar", command=self.iniciar_clicker())
+        self.btn_iniciar = tk.Button (self.tela, text = "Iniciar", command=self.iniciar_clicker)
         self.btn_iniciar.pack(pady = 10)
         #botão parar
-        self.btn_parar = tk.Button (self.tela, text = "Parar", command = self.parar_clicker())
+        self.btn_parar = tk.Button (self.tela, text = "Parar", command = self.parar_clicker)
         self.btn_parar.pack(pady=10)
         #capturar posição (tela)
-        self.btn_capturar_posicao = tk.Button (self.tela, text = "Capturar posição", command = self.capturar_posicao())
+        self.btn_capturar_posicao = tk.Button (self.tela, text = "Capturar posição", command = self.capturar_posicao)
         self.btn_capturar_posicao.pack(pady = 10)
+
+        self.tela.mainloop()
+
+    #funções dos botões criados anteriormente
+    def iniciar_clicker(self):
+        print("Iniciando!")
+        self.pos_x = self.entrada_pos_x.get()
+        self.pos_y = self.entrada_pos_y.get()
+        self.tecla_parar = self.entrada_tecla_parar.get()
+        self.intervalo_ms = self.entrada_ms.get()
+        self.iniciar()
+
+    def parar_clicker(self):
+        print("Parando!")
+        self.parar()
+
+    def capturar_posicao(self):
+        print("Capturando posição na tela...")
+        posicao = pyautogui.position()
+        self.entrada_pos_x.delete(0, "end")
+        self.entrada_pos_y.delete(0, "end")
+        self.entrada_pos_x.insert(0, posicao[0])
+        self.entrada_pos_y.insert(0, posicao[1])
+        print("Posição encontrada")
+
+if __name__ == "__main__":
+    AppInterface()
