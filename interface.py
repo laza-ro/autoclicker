@@ -1,3 +1,4 @@
+from PIL import GimpGradientFile
 import tkinter as tk
 
 class AppInterface:
@@ -7,7 +8,7 @@ class AppInterface:
         self.tela.geometry("400x400")
         self.tela.resizable(True, True)
 
-    # desenho do projeto
+    #desenho do projeto
         #espaço pra inserir os valores de ms
         self.label_ms = tk.Label(self.tela, text="Intervalo em ms")
         self.label_ms.pack(pady = 5) #espaço nas bordas
@@ -28,5 +29,13 @@ class AppInterface:
         self.label_tecla_parar.pack(pady = 5)
         self.entrada_tecla_parar = tk.Entry(self.tela)
         self.entrada_tecla_parar.pack()
-
-        
+    #criação dos botões
+        #botão iniciar
+        self.btn_iniciar = tk.Button (self.tela, text = "Iniciar", command=self.iniciar_clicker())
+        self.btn_iniciar.pack(pady = 10)
+        #botão parar
+        self.btn_parar = tk.Button (self.tela, text = "Parar", command = self.parar_clicker())
+        self.btn_parar.pack(pady=10)
+        #capturar posição (tela)
+        self.btn_capturar_posicao = tk.Button (self.tela, text = "Capturar posição", command = self.capturar_posicao())
+        self.btn_capturar_posicao.pack(pady = 10)
