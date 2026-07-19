@@ -1,9 +1,9 @@
-from interface import AppInterface;
-from motor import MotorClicker;
+import tkinter as tk
+from interface import AppInterface
 
-def __init__(AppInterface):
-    AppInterface.iniciar_clicker()
-    AppInterface.parar_clicker()
-    AppInterface.capturar_posicao()
-    AppInterface.ExibirInformacoesAtuais()
+root = tk.Tk () #cria a janela do sistema 
+app = AppInterface(root) # cria a interface gráfica do interface.py
+
+root.mainloop () #mantém a janela aberta
+
 
