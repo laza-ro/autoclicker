@@ -44,6 +44,15 @@ class AppInterface:
         self.btn_capturar_posicao = tk.Button (self.root, text = "Capturar posição", command = self.capturar_posicao)
         self.btn_capturar_posicao.pack(pady = 10)
 
+        ##rodapé
+        self.label_rodape = tk.Label (
+            self.root,
+            text="Desenvolvido por laza-ro | v1.0",
+            font = ("Times New Roman", 8),
+            fg="gray"
+        )
+        self.label_rodape.pack(side=tk.BOTTOM, pady=10)
+
         self.root.mainloop()
 
     #funções dos botões criados anteriormente
