@@ -1,5 +1,8 @@
 import tkinter as tk
 import pyautogui
+import time
+from motor import MotorClicker
+import threading
 
 class AppInterface:
     def __init__(self): #criando a tela principal do projeto
@@ -7,6 +10,7 @@ class AppInterface:
         self.tela.title ("Auto Clicker")
         self.tela.geometry("400x400")
         self.tela.resizable(True, True)
+        
 
     #desenho do projeto
         #espaço pra inserir os valores de ms
@@ -45,18 +49,23 @@ class AppInterface:
     #funções dos botões criados anteriormente
     def iniciar_clicker(self):
         print("Iniciando!")
-        self.pos_x = self.entrada_pos_x.get()
-        self.pos_y = self.entrada_pos_y.get()
-        self.tecla_parar = self.entrada_tecla_parar.get()
-        self.intervalo_ms = self.entrada_ms.get()
-        self.iniciar()
+        pos_x = int(self.entrada_pos_x.get()) #convertendo de string pra int
+        pos_y = int(self.entrada_pos_y.get()) #convertendo de string pra int
+        intervalo_ms = int(self.entrada_ms.get()) #convertendo de string pra int
+        tecla_parar = self.entrada_tecla_parar.get() #não precisa converter porque é o mesmo que um texto
+        self.motor = MotorClicker(intervalo_ms, tecla_parar, pos_x, pos_y) #o self.motor é usado para que guarde a informação do motor na memória
+        threading.Thread(target=self.motor.iniciar, daemon = True).start()
+        #threading.Thread cria uma linha de execução temporária pra assumir a tarefa em paralelo de iniciar o motor. o daemon serve pra que o programa não feche enquanto o thread estiver rodando
+        #passar o motor.iniciar com os parênteses iria fazer com que a função fosse executada imediatamente antes de entrar no threading.Thread
+        #daemon = true significa que a thread é temporária, ou seja, ela será encerrada junto com o programa principal ao ser fechado
 
     def parar_clicker(self):
         print("Parando!")
-        self.parar()
+        self.motor.parar()
 
     def capturar_posicao(self):
         print("Capturando posição na tela...")
+        time.sleep(3)
         posicao = pyautogui.position()
         self.entrada_pos_x.delete(0, "end")
         self.entrada_pos_y.delete(0, "end")

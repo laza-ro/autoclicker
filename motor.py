@@ -27,10 +27,10 @@ class MotorClicker:
         self.rodando = False
         print ('Autoclicker parado!')
 
-    def ExibirInformacoesAtuais (self):
-        print(self.intervalo_segundos)
-        print(self.tecla_parar)
-        print(self.pos_x)
-        print(self.pos_y)
+    # def ExibirInformacoesAtuais (self):
+    #     print(self.intervalo_segundos)
+    #     print(self.tecla_parar)
+    #     print(self.pos_x)
+    #     print(self.pos_y)
 
 
