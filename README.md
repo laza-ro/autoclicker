@@ -21,6 +21,7 @@ Se você quer apenas usar o programa, não precisa instalar nada:
 3. Dê um duplo clique e divirta-se!
 
 > **Nota:** Como o programa é um `.exe` recém-compilado e simula cliques do mouse, o Windows Defender pode emitir um aviso de segurança. Isso é um falso positivo comum em ferramentas de automação gratuitas.
+> **Nota2:** O botão 'Capturar posição' possui um pequeno delay de 3 segundos para capturar a posição do mouse, para evitar que o usuário clique em um local diferente do desejado. É recomendado clicar no botão e mover o mouse para o local desejado dentro desse tempo.
 
 ## 🛠️ Como Executar o Código (Para Desenvolvedores)
 
